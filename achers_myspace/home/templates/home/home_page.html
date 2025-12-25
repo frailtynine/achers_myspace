@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+<!-- load wagtailcore_tags by adding this: -->
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+<div class="myspace-container">
+    <div class="left-column">
+        <div class="bio-section">
+            <h2><a href="{% pageurl page %}">{{ page.title }}</a></h2>
+            <div>{{ page.body | richtext }}</div>
+            <div>
+                <a href="{% pageurl page %}?tag=music">Music</a> | 
+                <a href="{% pageurl page %}?tag=media">Media</a> 
+            </div>
+        </div>
+    <div class="player-embed">
+        <button class="ml-onclick-form" onclick="ml('show', 'QY0gfK', true)">Subscribe to Achers newsletter</button>
+        <iframe 
+            src="https://bandcamp.com/EmbeddedPlayer/album=2152755717/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless>
+                <a href="https://achersldn.bandcamp.com/album/bottom-of-the-hill">
+                    Bottom of the Hill by Achers
+                </a>
+        </iframe>
+    </div>
+    </div>
+    
+    <div class="posts-wall">
+        {% for post in posts.reverse %}
+            <div class="post-item">
+                <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <p class="post-meta">{{ post.specific.date }}</p>
+                <div>{{ post.specific.body | richtext }}</div>
+            </div>
+        {% empty %}
+            <p>No posts yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+[project]
+name = "achers"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "wagtail>=7.2.1",
+    "gunicorn>=20.0.4",
+    "django-environ>=0.12.0",
+    "mailerlite>=0.1.10",
+    "beautifulsoup4>=4.14.3",
+    "psycopg>=3.3.2",
+]
