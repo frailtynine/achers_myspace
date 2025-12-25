@@ -33,6 +33,7 @@ ALLOWED_HOSTS = env.list("ACHERS_ALLOWED_HOSTS", default=["localhost", "127.0.0.
 
 DEBUG = env.bool("ACHERS_DEBUG", default=False)
 
+CSRF_TRUSTED_ORIGINS = env.list("ACHERS_CSRF_TRUSTED_ORIGINS", default=[])
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
