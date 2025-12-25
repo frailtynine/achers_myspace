@@ -44,7 +44,7 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
     ports:
-      - "8010:80"
+      - "8100:80"
       - "8449:443"
     depends_on:
       - web
