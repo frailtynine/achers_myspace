@@ -29,7 +29,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Install the project requirements.
-COPY ../pyproject.toml ../uv.lock /
+COPY pyproject.toml uv.lock /
 RUN uv pip install --system --no-cache -r pyproject.toml
 
 # Use /app folder as a directory where the source code is stored.
