@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 
 from achers_myspace.settings.base import MAILER_API_KEY
 
+SPOTIFY_EMBED_REGEX = r'spotify\.com/embed/(playlist|album|track)/([^?]+)'
+
 
 def convert_embeds_for_email(
     html_content: str,
@@ -52,7 +54,9 @@ def convert_embeds_for_email(
         # Spotify embeds
         elif 'spotify.com' in src:
             # Extract Spotify URL
-            match = re.search(r'spotify\.com/embed/(playlist|album|track)/([^?]+)', src)
+            match = re.search(
+                SPOTIFY_EMBED_REGEX, src
+            )
             if match:
                 content_type = match.group(1)
                 content_id = match.group(2)
