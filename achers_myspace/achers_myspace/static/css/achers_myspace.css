@@ -273,12 +273,27 @@ a:visited {
     text-decoration: underline;
 }
 
+/* Responsive iframe wrapper - catch all iframes in content */
 .post-item iframe,
-.post-body iframe,
+.post-body iframe {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    border: none !important;
+}
+
+/* Spotify embeds need more height */
+.post-item iframe[src*="spotify"],
+.post-body iframe[src*="spotify"] {
+    height: 380px !important;
+    aspect-ratio: auto;
+}
+
+/* Generic fallback */
 iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border: none !important;
+    width: 100%;
+    min-height: 315px; /* YouTube default embed height */
+    border: none;
 }
 
 /* Mobile Responsive */

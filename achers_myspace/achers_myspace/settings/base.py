@@ -26,10 +26,16 @@ MAILER_API_KEY = env("ACHERS_MAILER_API_KEY", default="")
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("ACHERS_SECRET_KEY", default="django-insecure-change-this-in-production")
+SECRET_KEY = env(
+    "ACHERS_SECRET_KEY",
+    default="django-insecure-change-this-in-production"
+)
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = env.list("ACHERS_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+ALLOWED_HOSTS = env.list(
+    "ACHERS_ALLOWED_HOSTS",
+    default=["localhost", "127.0.0.1"]
+)
 
 DEBUG = env.bool("ACHERS_DEBUG", default=False)
 

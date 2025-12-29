@@ -5,6 +5,15 @@ from wagtail.fields import RichTextField
 class HomePage(Page):
     body = RichTextField()
 
+    # Only one HomePage allowed (at root)
+    parent_page_types = ['wagtailcore.Page']
+
+    # Only BlogPage can be a child of HomePage
+    subpage_types = ['blog.BlogPage']
+
+    # Limit to one instance
+    max_count = 1
+
     content_panels = Page.content_panels + [
         "body",
     ]

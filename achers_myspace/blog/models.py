@@ -49,6 +49,12 @@ class BlogPage(Page):
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     send_email = models.BooleanField("Send e-mail", default=False)
 
+    # Only allow BlogPage as child of HomePage
+    parent_page_types = ['home.HomePage']
+    
+    # BlogPage cannot have children
+    subpage_types = []
+
     content_panels = Page.content_panels + [
         FieldPanel("date"),
         FieldPanel("body"),
@@ -59,15 +65,10 @@ class BlogPage(Page):
     def send_newsletter(self) -> bool:
         """Sends an email notification about the blog post."""
         try:
-            logger.info(f"Starting to send newsletter for '{self.title}'")
-            logger.info(f"Body content: {self.body[:100]}...")  # Log first 100 chars
-
             subject = f"{self.title}"
             html_content = render_to_string("blog/email.html", {
                 "page": self,
             })
-            logger.info(f"Rendered email template, length: {len(html_content)}")
-
             send_blog_post(subject, html_content)
             logger.info(f"Sent blog post email for '{self.title}'")
             return True
