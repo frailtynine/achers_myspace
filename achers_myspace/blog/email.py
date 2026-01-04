@@ -34,18 +34,25 @@ def convert_embeds_for_email(
             if match:
                 video_id = match.group(1)
                 video_url = f"https://www.youtube.com/watch?v={video_id}"
-                thumbnail_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+                thumbnail_url = (
+                    f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+                )
 
                 # Create email-friendly replacement
-                replacement = soup.new_tag('div', style='margin: 20px 0; text-align: center;')
+                replacement = soup.new_tag(
+                    'div', style='margin: 20px 0; text-align: center;'
+                )
                 link = soup.new_tag(
                     'a', href=video_url, style='display: block;'
                 )
                 img = soup.new_tag(
                     'img',
-                    src=thumbnail_url, 
+                    src=thumbnail_url,
                     alt='Watch on YouTube',
-                    style='max-width: 100%; height: auto; border: 2px solid #333;'
+                    style=(
+                        'max-width: 100%; height: auto; '
+                        'border: 2px solid #333;'
+                    )
                 )
                 link.append(img)
                 replacement.append(link)
@@ -63,16 +70,22 @@ def convert_embeds_for_email(
                 title = iframe.get('title', 'Listen on Spotify')
                 if title != "Listen on Spotify":
                     title = title.replace('Spotify Embed: ', '')
-                spotify_url = f"https://open.spotify.com/{content_type}/{content_id}"
-                # Create email-friendly replacement
-                replacement = soup.new_tag(
-                    'div',
-                    style='margin: 20px 0; padding: 15px; background: #222; border: 2px solid #333; text-align: center;'
+                spotify_url = (
+                    f"https://open.spotify.com/{content_type}/{content_id}"
                 )
+                # Create email-friendly replacement
+                div_style = (
+                    "margin: 20px 0; padding: 15px; background: #222; "
+                    "border: 2px solid #333; text-align: center;"
+                )
+                replacement = soup.new_tag('div', style=div_style)
                 text_p = soup.new_tag('p', style='margin: 0;')
                 link = soup.new_tag(
-                    'a', href=spotify_url, 
-                    style='color: #ff6b6b; font-weight: bold; text-decoration: none;'
+                    'a', href=spotify_url,
+                    style=(
+                        'color: #ff6b6b; font-weight: bold; '
+                        'text-decoration: none;'
+                    )
                 )
                 link.string = title
                 text_p.append(link)

@@ -15,7 +15,7 @@ from taggit.models import TagBase, ItemBase
 from blog.email import send_blog_post
 
 
-logger = logging.getLogger(__name__) 
+logger = logging.getLogger(__name__)
 
 
 @register_snippet
@@ -52,7 +52,7 @@ class BlogPage(Page):
 
     # Only allow BlogPage as child of HomePage
     parent_page_types = ['home.HomePage']
-    
+
     # BlogPage cannot have children
     subpage_types = []
 
