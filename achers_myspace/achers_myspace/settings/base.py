@@ -20,7 +20,8 @@ BASE_DIR = PROJECT_DIR.parent
 
 # Load environment variables
 env = environ.Env()
-environ.Env.read_env(BASE_DIR / '.env')
+# .env is at repository root (one level above BASE_DIR)
+environ.Env.read_env(BASE_DIR.parent / '.env')
 
 MAILER_API_KEY = env("ACHERS_MAILER_API_KEY", default="")
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"

@@ -19,3 +19,4 @@ logs/
 #Django and Wagtail generated files
 *.sqlite3
 media/
+/achers_myspace/static/

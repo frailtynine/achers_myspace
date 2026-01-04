@@ -21,8 +21,8 @@ class HomePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
 
-        # Get blog entries
-        posts = self.get_children().live().specific()
+        # Get blog entries, sorted by top first, then by date descending
+        posts = self.get_children().live().specific().order_by('-blogpage__top', '-blogpage__date')
 
         # Filter by tag
         tag = request.GET.get('tag')

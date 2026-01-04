@@ -48,6 +48,7 @@ class BlogPage(Page):
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     send_email = models.BooleanField("Send e-mail", default=False)
+    top = models.BooleanField("Pin to top", default=False)
 
     # Only allow BlogPage as child of HomePage
     parent_page_types = ['home.HomePage']
@@ -60,6 +61,7 @@ class BlogPage(Page):
         FieldPanel("body"),
         FieldPanel("tags"),
         FieldPanel("send_email"),
+        FieldPanel("top"),
     ]
 
     def send_newsletter(self) -> bool:

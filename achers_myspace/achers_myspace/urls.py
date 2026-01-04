@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
@@ -15,19 +15,24 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
 ]
 
-
 if settings.DEBUG:
     from django.conf.urls.static import static
-    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    from django.contrib.staticfiles import views
 
-    # Serve static and media files from development server
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Serve static files in development - explicit pattern to prevent
+    # Wagtail's catch-all from intercepting static file requests
+    urlpatterns.insert(
+        0, re_path(r'^static/(?P<path>.*)$', views.serve)
+    )
+    # Serve media files in development
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
 
+# For anything not caught by a more specific rule above, hand over to
+# Wagtail's page serving mechanism. This should be the last pattern in
+# the list:
 urlpatterns = urlpatterns + [
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
     path("", include(wagtail_urls)),
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
