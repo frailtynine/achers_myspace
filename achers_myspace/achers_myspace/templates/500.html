@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8" />
-        <title>Internal server error</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <h1>Internal server error</h1>
+{% extends "base.html" %}
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
-    </body>
-</html>
+{% block title %}Internal server error{% endblock %}
+
+{% block body_class %}template-500{% endblock %}
+
+{% block content %}
+<div class="blog-post-container">
+    <div class="blog-post-content">
+        <h1>500 - Internal Server Error</h1>
+        <div class="post-body" style="text-align: center; padding: 40px 15px;">
+            <p>Sorry, something went wrong. Please try again later.</p>
+            <p><a href="/">Back to home</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
