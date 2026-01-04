@@ -11,12 +11,39 @@ wheels/
 
 # Env files
 .env
+.env.*
+!.env.example
 
-# logs
+# Logs
 logs/
 *.log
 
-#Django and Wagtail generated files
+# Django and Wagtail generated files
 *.sqlite3
 media/
 /achers_myspace/static/
+
+# Testing and coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Type checking and linting caches
+.mypy_cache/
+.ruff_cache/
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Mac files
+.DS_Store
+
+# Secrets and credentials
+*.pem
+*.key
