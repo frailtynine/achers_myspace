@@ -25,7 +25,7 @@ services:
     build:
       context: .
       dockerfile: ./achers_myspace/Dockerfile
-    command: gunicorn achers_myspace.wsgi:application --bind 0.0.0.0:8100
+    command: sh -c "python manage.py collectstatic --noinput && gunicorn achers_myspace.wsgi:application --bind 0.0.0.0:8100"
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media

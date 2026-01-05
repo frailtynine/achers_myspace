@@ -1,10 +1,13 @@
 import re
 from urllib.parse import urljoin
+import logging
 
 import mailerlite
 from bs4 import BeautifulSoup
 
 from achers_myspace.settings.base import MAILER_API_KEY
+
+logger = logging.getLogger(__name__)
 
 SPOTIFY_EMBED_REGEX = r'spotify\.com/embed/(playlist|album|track)/([^?]+)'
 
