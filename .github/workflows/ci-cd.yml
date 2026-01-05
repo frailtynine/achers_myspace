@@ -58,7 +58,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./achers_myspace
+          context: .
           push: true
           tags: ${{ secrets.DOCKER_IMAGE }}
       -
