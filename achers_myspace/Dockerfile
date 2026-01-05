@@ -46,6 +46,9 @@ COPY --chown=wagtail:wagtail achers_myspace/ .
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
 
+# Create media directory with proper ownership
+RUN mkdir -p /app/media
+
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
 
