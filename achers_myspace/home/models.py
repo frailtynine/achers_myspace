@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 
@@ -22,11 +23,25 @@ class HomePage(Page):
         context = super().get_context(request)
 
         # Get blog entries, sorted by top first, then by date descending
-        posts = self.get_children().live().specific().order_by('-blogpage__top', '-blogpage__date')
+        posts = self.get_children().live().specific().order_by(
+            '-blogpage__top', '-blogpage__date'
+        )
 
         # Filter by tag
         tag = request.GET.get('tag')
         if tag:
             posts = posts.filter(blogpage__tagged_items__tag__name=tag)
+
+        # Pagination
+        paginator = Paginator(posts, 10)
+        page_number = request.GET.get('page')
+        try:
+            posts = paginator.page(page_number)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
         context['posts'] = posts
+        context['current_tag'] = tag
         return context

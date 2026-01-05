@@ -36,6 +36,18 @@
         {% empty %}
             <p>No posts yet.</p>
         {% endfor %}
+
+        {% if posts.has_other_pages %}
+        <div class="pagination">
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">&laquo; Prev</a>
+            {% endif %}
+            <span class="page-info">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">Next &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

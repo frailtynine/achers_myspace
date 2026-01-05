@@ -296,6 +296,35 @@ iframe {
     border: none;
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 2px solid #333;
+    background: #2a2a2a;
+}
+
+.pagination a {
+    color: #ff6b6b;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 2px solid #333;
+    background: #222;
+}
+
+.pagination a:hover {
+    background: #333;
+    text-decoration: underline;
+}
+
+.pagination .page-info {
+    color: #888;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .myspace-container {
