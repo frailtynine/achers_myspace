@@ -6,6 +6,9 @@ from .base import *
 # See https://docs.djangoproject.com/en/6.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
+# In production, Django will store uploaded files in a persistent volume at /app/media
+MEDIA_ROOT = "/app/media"
+
 try:
     from .local import *
 except ImportError:
