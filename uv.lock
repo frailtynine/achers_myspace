@@ -13,6 +13,7 @@ dependencies = [
     { name = "mailerlite" },
     { name = "psycopg" },
     { name = "wagtail" },
+    { name = "wagtail-newsletter", extra = ["mailchimp", "mrml"] },
 ]
 
 [package.metadata]
@@ -23,6 +24,7 @@ requires-dist = [
     { name = "mailerlite", specifier = ">=0.1.10" },
     { name = "psycopg", specifier = ">=3.3.2" },
     { name = "wagtail", specifier = ">=7.2.1" },
+    { name = "wagtail-newsletter", extras = ["mailchimp", "mrml"], specifier = ">=0.2.4" },
 ]
 
 [[package]]
@@ -298,6 +300,21 @@ wheels = [
 ]
 
 [[package]]
+name = "mailchimp-marketing"
+version = "3.0.80"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "python-dateutil" },
+    { name = "requests" },
+    { name = "six" },
+    { name = "urllib3" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/22/a0/bf3a0d0c237eee255a02ee9a75fc60cabff2ec8264c4f715c4e647ba2466/mailchimp_marketing-3.0.80-py3-none-any.whl", hash = "sha256:a5bcb3ebd3be60908c65af765f8195724e6fd2d61ecf6da667a794c5bc7b84d3", size = 109565, upload-time = "2022-11-02T19:20:25.306Z" },
+]
+
+[[package]]
 name = "mailerlite"
 version = "0.1.10"
 source = { registry = "https://pypi.org/simple" }
@@ -320,6 +337,28 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/3f/49/751b8872bb9c1ec667d0d312ab90022f0426326109163ade4719466c2e4d/modelsearch-1.1.1.tar.gz", hash = "sha256:25f329c4d93572729c931f65c46cedb5cfc32d368690ebdabc223aa6205251d6", size = 87514, upload-time = "2025-11-10T14:29:57.223Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/88/4b/e3eb1f4e4f7ca4bfa9b71cea497352c1ce13261254d59cb33a36bcbff335/modelsearch-1.1.1-py3-none-any.whl", hash = "sha256:d2580790af76c3a6404f651c9d8ca8695b284551583bb8ca6ddeb17eca0cfb52", size = 106987, upload-time = "2025-11-10T14:29:55.946Z" },
+]
+
+[[package]]
+name = "mrml"
+version = "0.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/12/ee/305cfad90f41fff3b9823dc4c5fa8e553d611163256ba6a44627fb3628b0/mrml-0.2.0.tar.gz", hash = "sha256:97e8eb99d6e42821a020bdc76a7415fb714a2d8b8a8c5c22803dcd5a809f2edd", size = 134540, upload-time = "2025-03-01T20:04:26.404Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/45/2a016c3d0142f204fb98716d7500b106fd44ee8b9949e1df0d43e6e7c92b/mrml-0.2.0-cp313-cp313-macosx_10_12_x86_64.whl", hash = "sha256:d1a5a55aed7425c59e5b77024ea3876c71a6ea62792cf4ce38eb04100fbb0a61", size = 1637385, upload-time = "2025-03-01T20:03:17.723Z" },
+    { url = "https://files.pythonhosted.org/packages/ca/bf/d16394dd8d33a087501a6e9d5c8da3760d1e743c1a321bf713299d90a687/mrml-0.2.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:d6f09ca2076b4d1080fdf0cd1a3a2ad85faa88f64690cef13d696c3bc30d5a5b", size = 1555477, upload-time = "2025-03-01T20:03:18.841Z" },
+    { url = "https://files.pythonhosted.org/packages/c5/8f/5d8b9cd7c3041072fc58e348bcf7342bb6e742b96a4ca6004624b1d0a9ac/mrml-0.2.0-cp313-cp313-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:986b71ab1c0ff78aef6d7aaac967418083146a6003de5ca5f7275f5ded190b09", size = 1594092, upload-time = "2025-03-01T20:03:20.221Z" },
+    { url = "https://files.pythonhosted.org/packages/80/72/f11ef94939b6b161a98725864a7bca196d985eeaf455d64b77534e55bcc7/mrml-0.2.0-cp313-cp313-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:219a840471e87e4d3d5db5b9c9ff65a96410643f02994fa46b15a308c8001f54", size = 1671767, upload-time = "2025-03-01T20:03:21.521Z" },
+    { url = "https://files.pythonhosted.org/packages/db/6f/8aef4cf03c4dae3b2c806137c56b6205274e2a9a76cf27096b3ce1c4245d/mrml-0.2.0-cp313-cp313-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:eba7ae5cbc4263fa3ba94230d6c66008c33890b5372385ed6ab8951bac336771", size = 1848048, upload-time = "2025-03-01T20:03:22.823Z" },
+    { url = "https://files.pythonhosted.org/packages/99/9e/a5129eae9bc25aaaf40299dd8b854716b6fc13e8e341484942bc39979efa/mrml-0.2.0-cp313-cp313-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:df66107b0dd7556b21cd3156876f2d5389d276b70cf29b8796141b0553a9615e", size = 1849732, upload-time = "2025-03-01T20:03:24.738Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/dc/c7f1a41868fc94b8e016fb64c354e735d8b147edf15fcbe3be299b894a48/mrml-0.2.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:35233367f3ce503f87f47c04838ae8a298b5b08a212b1753e998279b09f1ab46", size = 1774084, upload-time = "2025-03-01T20:03:25.926Z" },
+    { url = "https://files.pythonhosted.org/packages/b9/ff/a122ba8445e2457971129306d56ca1d20cb1f64f64f59aa28b5fd1762db4/mrml-0.2.0-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:0b0915d8ec0964333c123d462bfd68284a3d4715971d978426e282e11d08ebb4", size = 1709154, upload-time = "2025-03-01T20:03:27.789Z" },
+    { url = "https://files.pythonhosted.org/packages/08/94/cf0e072ff85bb5293fcb3465c20f36f86a74421b4cae4c43427acd7ba914/mrml-0.2.0-cp313-cp313-win32.whl", hash = "sha256:302cbbc0846fc158d2ec6b3e7c59dad6f5a9adcd3bd9d26b2dd148d39a274711", size = 1136900, upload-time = "2025-03-01T20:03:29.518Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/b7/19b0cfdf67ec068a66870536bc489927ec25b84841cb075be3eca4acf758/mrml-0.2.0-cp313-cp313-win_amd64.whl", hash = "sha256:29d95f366dd2a55d152965ec90035b5c4a89d2f9028bd4bb2342e2f3585363e9", size = 1417896, upload-time = "2025-03-01T20:03:30.638Z" },
+    { url = "https://files.pythonhosted.org/packages/c8/a8/5263b68198e5a3a8f141281a0702aa5be750b7dd698a20c51414bc04981c/mrml-0.2.0-cp313-cp313t-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:13159e3aa30696ac64af5176a1a75020a7097fe2338e126d2ddc734f73549a10", size = 1593220, upload-time = "2025-03-01T20:03:31.836Z" },
+    { url = "https://files.pythonhosted.org/packages/8e/4f/3fff2d1ee06e95531a572f0bc53ca844c845e741ae4d5b9f57ed7b2e4b17/mrml-0.2.0-cp313-cp313t-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:f1becb9f3e278027c3d99747e30f8e8915b9569b6756028f2e824fdf35745e37", size = 1848613, upload-time = "2025-03-01T20:03:33.806Z" },
+    { url = "https://files.pythonhosted.org/packages/ba/6f/dc2a5504979a6a75fcf2bfa7e1b26e947005554f15ba5ad2c8866d1e71ce/mrml-0.2.0-cp313-cp313t-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:e7e3755fbc661115e3d7f1614230ac1c0bb9e8fdb4213d36aa1ad057f8fcf18c", size = 1852970, upload-time = "2025-03-01T20:03:35.141Z" },
+    { url = "https://files.pythonhosted.org/packages/da/b0/b9934140e42e6f4a1c139475656bc446150b7f82ff8a56f38626599e1117/mrml-0.2.0-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:55a82f3ed95d6b402e39446762f7bbeeb2a68084b82a10abe2923f0abe73259b", size = 1709350, upload-time = "2025-03-01T20:03:37.136Z" },
 ]
 
 [[package]]
@@ -439,6 +478,30 @@ wheels = [
 ]
 
 [[package]]
+name = "python-dateutil"
+version = "2.9.0.post0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/66/c0/0c8b6ad9f17a802ee498c46e004a0eb49bc148f2fd230864601a86dcf6db/python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3", size = 342432, upload-time = "2024-03-01T18:36:20.211Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427", size = 229892, upload-time = "2024-03-01T18:36:18.57Z" },
+]
+
+[[package]]
+name = "queryish"
+version = "0.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d5/ad/c8abbee4d48b274f55c145b7463a1d4d3393f677b7ab0e95cea7d5ab9da6/queryish-0.3.tar.gz", hash = "sha256:7f5e32cb466b4c87d8e8e1b8272da68ba43c413155a868453558e4ad6a4dc8d5", size = 17853, upload-time = "2025-10-13T11:53:20.379Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8d/03/de94848b5bc5781db51beafc204d657c5563c851cd49928383d30892b2dc/queryish-0.3-py3-none-any.whl", hash = "sha256:1e8c01b9372c2f715f6015c72424bb76514779fead71a7980343368c028965e1", size = 10638, upload-time = "2025-10-13T11:53:19.55Z" },
+]
+
+[[package]]
 name = "requests"
 version = "2.32.5"
 source = { registry = "https://pypi.org/simple" }
@@ -451,6 +514,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz", hash = "sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf", size = 134517, upload-time = "2025-08-18T20:46:02.573Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl", hash = "sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6", size = 64738, upload-time = "2025-08-18T20:46:00.542Z" },
+]
+
+[[package]]
+name = "six"
+version = "1.17.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
 ]
 
 [[package]]
@@ -534,6 +606,28 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/42/81/6fea7fcf87b23cdb3c6f1c1aa902be3ef4d4ed62d25610f5323e711f6853/wagtail-7.2.1.tar.gz", hash = "sha256:388bb42c4818c081a4ddf36e6f4529bfbc54ed262a91b65b0e5f951476f2cf74", size = 6765427, upload-time = "2025-11-26T18:03:50.112Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/28/dc/471d10773058dbaab22d365be687ce8a10d74c6939611513e94ffc731d52/wagtail-7.2.1-py3-none-any.whl", hash = "sha256:b29f9fc226fadf744cf6fd5a24ee1c2b7a00ade5f801c72069af8b453d6a1241", size = 9237644, upload-time = "2025-11-26T18:03:38.221Z" },
+]
+
+[[package]]
+name = "wagtail-newsletter"
+version = "0.2.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "queryish" },
+    { name = "wagtail" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f2/75/8f7fa023e9a61c580010163f7f0c1a3d89851f549e3fa6e30b362da79210/wagtail_newsletter-0.2.4.tar.gz", hash = "sha256:cacf44ff81c2429134e6615914fb8c8a3ff3d5220e43f567fb63df2083762b03", size = 93246, upload-time = "2025-11-24T17:01:13.915Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3f/74/81e981ab1c6c02fd5feb186d880007bf7d2dfa80fc2ba95413aa7771a775/wagtail_newsletter-0.2.4-py3-none-any.whl", hash = "sha256:a19789be23bb1d5dcf9ade798dde1a36b598751d9f31ba6e4e94bf50488f0aa4", size = 23974, upload-time = "2025-11-24T17:01:11.734Z" },
+]
+
+[package.optional-dependencies]
+mailchimp = [
+    { name = "mailchimp-marketing" },
+]
+mrml = [
+    { name = "mrml" },
 ]
 
 [[package]]

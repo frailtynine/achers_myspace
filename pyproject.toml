@@ -11,4 +11,5 @@ dependencies = [
     "mailerlite>=0.1.10",
     "beautifulsoup4>=4.14.3",
     "psycopg>=3.3.2",
+    "wagtail-newsletter[mailchimp,mrml]>=0.2.4",
 ]

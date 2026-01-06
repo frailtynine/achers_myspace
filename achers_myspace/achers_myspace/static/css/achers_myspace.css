@@ -107,6 +107,141 @@ a:visited {
     transform: translateY(0);
 }
 
+/* Mailchimp Embedded Signup Form */
+#mc_embed_shell {
+    border: 2px solid #333;
+    background: #2a2a2a;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+#mc_embed_signup {
+    background: #2a2a2a !important;
+    clear: left;
+    font: 12px Verdana, Arial, Helvetica, sans-serif !important;
+    width: 100% !important;
+}
+
+#mc_embed_signup h2 {
+    margin: 0 !important;
+    padding: 12px 15px !important;
+    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a) !important;
+    color: #ff6b6b !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border-bottom: 2px solid #ff6b6b !important;
+}
+
+#mc_embed_signup_scroll {
+    padding: 0 !important;
+}
+
+#mc_embed_signup .indicates-required {
+    text-align: right;
+    font-size: 11px;
+    margin: 10px 15px 0 15px;
+    color: #888;
+}
+
+#mc_embed_signup .asterisk {
+    color: #ff6b6b;
+}
+
+#mc_embed_signup .mc-field-group {
+    padding: 15px;
+    padding-top: 10px;
+    width: 100% !important;
+}
+
+#mc_embed_signup label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #e0e0e0;
+}
+
+#mc_embed_signup input.email {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    width: 100% !important;
+    padding: 8px 10px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    color: #e0e0e0;
+    box-sizing: border-box;
+}
+
+#mc_embed_signup input.email:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+#mc_embed_signup .clear {
+    display: block;
+    height: auto;
+    padding: 0 15px 15px 15px;
+    width: 100%;
+}
+
+#mc_embed_signup .button {
+    background: linear-gradient(to bottom, #ff6b6b, #c44569) !important;
+    color: #fff !important;
+    padding: 10px 20px !important;
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    border: none !important;
+    width: 100% !important;
+    transition: all 0.2s ease;
+    border-radius: 0 !important;
+}
+
+#mc_embed_signup .button:hover {
+    background: linear-gradient(to bottom, #ff8585, #d65a7c) !important;
+    transform: translateY(-1px);
+}
+
+#mc_embed_signup .button:active {
+    transform: translateY(0);
+}
+
+#mc_embed_signup #mce-responses {
+    padding: 0 15px;
+}
+
+#mc_embed_signup .response {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 11px;
+    border: 2px solid #333;
+    background: #222;
+}
+
+#mc_embed_signup #mce-error-response {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+#mc_embed_signup #mce-success-response {
+    color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Hide Mailchimp referral badge */
+#mc_embed_signup .optionalParent p {
+    display: none !important;
+}
+
+#mc_embed_signup .refferal_badge {
+    display: none !important;
+}
+
 .post-item {
     border: 2px solid #333;
     padding: 0;

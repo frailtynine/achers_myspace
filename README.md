@@ -1,12 +1,15 @@
 # Achers MySpace
 
-A Wagtail CMS website for the indie rock band Achers, styled with an old-school MySpace aesthetic featuring dark indie rock themes.
+A Wagtail CMS website for a rock band, styled with an old-school MySpace, with newsletter integration.
+
+The project is tailored for London indie rock band [Achers](https://achers.org), but with few adjustments can be used anywhere. 
 
 ## Features
 
 - **Custom Blog System**: Rich text blog posts with tag support
-- **Tag Filtering**: Browse blog posts by tags (music, media, etc.)
-- **Email Newsletter**: MailerLite integration for optional sending newsletters when blog posts are published
+- **Tag Filtering**: Browse blog posts by tags (music, media, gigs, etc.)
+- **Newsletter Integration**: Support for both Mailchimp (embedded signup form) and MailerLite (popup form)
+- **Email Newsletter**: Newsletter integration (supports Mailchimp and Mailerlite)
 - **Embed Conversion**: Automatically converts YouTube and Spotify embeds to email-friendly formats (thumbnails and links)
 - **MySpace-Inspired UI**: Dark theme (#1a1a1a background, #ff6b6b accents) with gradient headers and bordered modules, two columns and a music player, just like in good old days. 
 - **Mobile Responsive**: Optimized layout for desktop and mobile devices
@@ -16,7 +19,7 @@ A Wagtail CMS website for the indie rock band Achers, styled with an old-school 
 - **Backend**: Django 5.2+ with Wagtail 7.2+
 - **Database**: PostgreSQL (production), SQLite (development)
 - **Package Manager**: uv
-- **Email**: MailerLite API
+- **Newsletter**: Mailchimp or MailerLite
 - **Deployment**: Docker with Nginx reverse proxy
 - **Frontend**: Wagtail templates with MySpace aesthetic
 
@@ -52,7 +55,11 @@ ACHERS_ALLOWED_HOSTS=localhost,127.0.0.1
 # Database (SQLite for dev - no DATABASE_URL needed)
 # For PostgreSQL: ACHERS_DATABASE_URL=postgres://user:pass@localhost:5432/dbname
 
-# MailerLite
+# Newsletter Integration (choose one)
+# Mailchimp - for embedded signup form and wagtail-newsletter integration
+WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY=your-mailchimp-api-key
+
+# MailerLite - for popup form and programmatic email sending
 ACHERS_MAILER_API_KEY=your-mailerlite-api-key
 ```
 
@@ -107,8 +114,9 @@ ACHERS_POSTGRES_USER=achers
 ACHERS_POSTGRES_PASSWORD=strong-password
 ACHERS_DATABASE_URL=postgres://achers:strong-password@db:5432/achers_db
 
-# MailerLite
-ACHERS_MAILER_API_KEY=your-production-api-key
+# Newsletter Integration
+WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY=your-mailchimp-api-key
+ACHERS_MAILER_API_KEY=your-mailerlite-api-key  # Optional
 ```
 
 2. Build and run with Docker Compose:
@@ -153,15 +161,107 @@ achers/
 └── pyproject.toml           # Python dependencies
 ```
 
-## Email Newsletter (Optional)
+## Newsletter Integration
 
-Email newsletter functionality is available but optional. When enabled, blog posts can automatically send newsletters via MailerLite when published. The system:
-- Converts YouTube embeds to clickable thumbnails
-- Converts Spotify embeds to styled links
-- Uses email-safe HTML with inline styles
-- Schedules campaigns for instant delivery
+The project supports two newsletter integration options that can be used independently or together:
 
-To disable email newsletters, simply don't configure the `ACHERS_MAILER_API_KEY` environment variable.
+### Option 1: Mailchimp (Default - Recommended)
+
+**Features:**
+- Embedded signup form on homepage (styled to match MySpace theme)
+- Integration with `wagtail-newsletter` package
+- Newsletter sending via Wagtail admin
+
+**Setup:**
+
+1. Get your Mailchimp API key from [Mailchimp Account Settings](https://admin.mailchimp.com/account/api/)
+
+2. Create an embedded signup form in Mailchimp:
+   - Go to **Forms** → **Other forms** → **Create embedded form**
+   - Choose your audience
+   - Copy the generated HTML code
+
+3. Add the signup form HTML to `achers_myspace/home/templates/home/home_page.html` inside the `#mc_embed_shell` div (already present in the template, replace it).
+
+4. Set environment variable:
+```env
+WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY=your-mailchimp-api-key
+```
+
+5. The CSS styling is already configured in `static/css/achers_myspace.css` to match the MySpace theme
+
+**To disable Mailchimp:**
+
+Mailchimp integration uses the `wagtail-newsletter` package via `NewsletterPageMixin` which adds database fields and admin panels to BlogPage. To fully disable it:
+
+1. Remove or comment out the `#mc_embed_shell` section from `home_page.html`
+2. Remove the `WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY` from `.env`
+3. **Note**: Mailchimp-related fields will still appear in Wagtail admin (newsletter campaign, recipients, subject) due to the `NewsletterPageMixin`. To completely remove these:
+   - Remove `NewsletterPageMixin` from `BlogPage` class in `blog/models.py`
+   - Remove `from wagtail_newsletter.models import NewsletterPageMixin` import
+   - Run `python manage.py makemigrations` and `python manage.py migrate`
+   - This will remove the newsletter fields from the database
+
+### Option 2: MailerLite (Alternative)
+
+**Features:**
+- Popup signup form (triggered by button click or automatically)
+- Programmatic email sending via API
+- Lighter weight integration
+- Manual control over when popup appears
+- Uses custom `send_email` field (already in database, hidden by default)
+
+**Setup:**
+
+1. Get your MailerLite API key from [MailerLite Settings](https://dashboard.mailerlite.com/integrations/api)
+
+2. Get your popup form ID:
+   - Create a popup form in MailerLite dashboard
+   - Copy the form ID (e.g., `QY0gfK`)
+
+3. Uncomment the MailerLite Universal script in `achers_myspace/achers_myspace/templates/base.html`:
+```html
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', 'YOUR_ACCOUNT_ID');
+</script>
+<!-- End MailerLite Universal -->
+```
+
+4. Add a trigger button in `home_page.html` (replace the Mailchimp form):
+```html
+<button class="ml-onclick-form" onclick="ml('show', 'YOUR_FORM_ID', true)">
+    Subscribe to Newsletter
+</button>
+```
+
+5. Set environment variable:
+```env
+ACHERS_MAILER_API_KEY=your-mailerlite-api-key
+```
+
+6. **Enable the "Send e-mail" field in admin** (currently hidden):
+   - In `blog/models.py`, add `FieldPanel("send_email")` to `content_panels` list
+   - This checkbox enables automatic newsletter sending via MailerLite API when publishing blog posts
+
+**To disable MailerLite:**
+- Comment out the MailerLite script in `base.html` (currently commented out by default)
+- Remove the popup trigger button from `home_page.html`
+- Remove the `ACHERS_MAILER_API_KEY` from `.env`
+
+### Email Sending on Blog Post Publish
+
+When blog posts are published with the "Send e-mail" checkbox enabled, the system can automatically send newsletters. This functionality uses MailerLite API (`blog/email.py`) and includes:
+- Automatic conversion of YouTube embeds to clickable thumbnails
+- Conversion of Spotify embeds to styled links
+- Email-safe HTML with inline styles
+- Instant campaign delivery
+
+**Note:** This feature requires `ACHERS_MAILER_API_KEY` to be configured.
 
 ## Usage & License
 

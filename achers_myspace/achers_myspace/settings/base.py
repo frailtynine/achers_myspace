@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
+    "wagtail_newsletter",
     "django_filters",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -72,7 +73,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.postgres",
 ]
 
 MIDDLEWARE = [
@@ -206,3 +206,8 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+
+# Wagtail Newsletter Mailchimp Settings
+WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY = env("WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY", default="")
+WAGTAIL_NEWSLETTER_FROM_NAME = "Achers"
+WAGTAIL_NEWSLETTER_REPLY_TO = "achers@achers.org"

@@ -1,5 +1,8 @@
 from .base import *
 
+# Add PostgreSQL support for production
+INSTALLED_APPS = INSTALLED_APPS + ["django.contrib.postgres"]
+
 # ManifestStaticFilesStorage is recommended in production, to prevent
 # outdated JavaScript / CSS assets being served from cache
 # (e.g. after a Wagtail upgrade).
