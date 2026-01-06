@@ -25,6 +25,7 @@ def convert_embeds_for_email(
         if src and not src.startswith(('http://', 'https://', 'data:')):
             # Convert relative URL to absolute
             img['src'] = urljoin(base_url, src)
+            img['style'] = 'max-width: 100%; height: auto; display: block;'
 
     # Find all iframes (YouTube and Spotify embeds)
     for iframe in soup.find_all('iframe'):
