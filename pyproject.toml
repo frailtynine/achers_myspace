@@ -11,6 +11,6 @@ dependencies = [
     # REMOVED: mailerlite (replaced with wagtail-newsletter)
     # REMOVED: beautifulsoup4 (only used by mailerlite integration)
     "psycopg>=3.3.2",
-    "wagtail-newsletter>=0.2.0",
-    "mailchimp-marketing>=3.0.80",
+    "wagtail-newsletter>=0.2.0,<0.3.0",
+    "mailchimp-marketing>=3.0.80,<4.0.0",
 ]

@@ -71,9 +71,6 @@ class BlogPage(NewsletterPageMixin, Page):
         FieldPanel("top"),
     ]
 
-    # Add newsletter panels from the mixin
-    edit_handler = None  # This will be handled by NewsletterPageMixin.get_edit_handler()
-
     # COMMENTED OUT: MailerLite integration (replaced with wagtail-newsletter)
     # def send_newsletter(self) -> bool:
     #     """Sends an email notification about the blog post."""
