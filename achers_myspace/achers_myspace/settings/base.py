@@ -49,8 +49,6 @@ CSRF_TRUSTED_ORIGINS = env.list("ACHERS_CSRF_TRUSTED_ORIGINS", default=[])
 # Application definition
 
 INSTALLED_APPS = [
-    "blog",
-    "home",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -65,7 +63,6 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
-    "wagtail_newsletter",
     "django_filters",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -73,6 +70,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "wagtail_newsletter",
+    "blog",
+    "home",
 ]
 
 MIDDLEWARE = [
