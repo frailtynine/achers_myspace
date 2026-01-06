@@ -6,8 +6,7 @@ A Wagtail CMS website for the indie rock band Achers, styled with an old-school 
 
 - **Custom Blog System**: Rich text blog posts with tag support
 - **Tag Filtering**: Browse blog posts by tags (music, media, etc.)
-- **Email Newsletter**: MailerLite integration for optional sending newsletters when blog posts are published
-- **Embed Conversion**: Automatically converts YouTube and Spotify embeds to email-friendly formats (thumbnails and links)
+- **Email Newsletter**: Mailchimp integration via wagtail-newsletter for sending newsletters when blog posts are published
 - **MySpace-Inspired UI**: Dark theme (#1a1a1a background, #ff6b6b accents) with gradient headers and bordered modules, two columns and a music player, just like in good old days. 
 - **Mobile Responsive**: Optimized layout for desktop and mobile devices
 
@@ -16,7 +15,7 @@ A Wagtail CMS website for the indie rock band Achers, styled with an old-school 
 - **Backend**: Django 5.2+ with Wagtail 7.2+
 - **Database**: PostgreSQL (production), SQLite (development)
 - **Package Manager**: uv
-- **Email**: MailerLite API
+- **Email**: Mailchimp (via wagtail-newsletter)
 - **Deployment**: Docker with Nginx reverse proxy
 - **Frontend**: Wagtail templates with MySpace aesthetic
 
@@ -52,8 +51,9 @@ ACHERS_ALLOWED_HOSTS=localhost,127.0.0.1
 # Database (SQLite for dev - no DATABASE_URL needed)
 # For PostgreSQL: ACHERS_DATABASE_URL=postgres://user:pass@localhost:5432/dbname
 
-# MailerLite
-ACHERS_MAILER_API_KEY=your-mailerlite-api-key
+# Mailchimp (via wagtail-newsletter)
+ACHERS_MAILCHIMP_API_KEY=your-mailchimp-api-key
+ACHERS_MAILCHIMP_SERVER_PREFIX=us1  # e.g., us1, us2, etc.
 ```
 
 4. Run migrations:
@@ -107,8 +107,9 @@ ACHERS_POSTGRES_USER=achers
 ACHERS_POSTGRES_PASSWORD=strong-password
 ACHERS_DATABASE_URL=postgres://achers:strong-password@db:5432/achers_db
 
-# MailerLite
-ACHERS_MAILER_API_KEY=your-production-api-key
+# Mailchimp (via wagtail-newsletter)
+ACHERS_MAILCHIMP_API_KEY=your-production-api-key
+ACHERS_MAILCHIMP_SERVER_PREFIX=us1  # e.g., us1, us2, etc.
 ```
 
 2. Build and run with Docker Compose:
@@ -141,7 +142,7 @@ achers/
 │   │   └── templates/       # Base templates
 │   ├── blog/                # Blog app with rich text
 │   │   ├── models.py        # BlogPage model with tags
-│   │   ├── email.py         # MailerLite integration (optional)
+│   │   ├── email.py         # Previously MailerLite (now commented out)
 │   │   └── templates/       # Blog templates
 │   ├── home/                # Homepage app
 │   │   ├── models.py        # HomePage with tag filtering
@@ -153,15 +154,44 @@ achers/
 └── pyproject.toml           # Python dependencies
 ```
 
-## Email Newsletter (Optional)
+## Email Newsletter Configuration
 
-Email newsletter functionality is available but optional. When enabled, blog posts can automatically send newsletters via MailerLite when published. The system:
-- Converts YouTube embeds to clickable thumbnails
-- Converts Spotify embeds to styled links
-- Uses email-safe HTML with inline styles
-- Schedules campaigns for instant delivery
+The project uses **wagtail-newsletter** for Mailchimp integration. To configure:
 
-To disable email newsletters, simply don't configure the `ACHERS_MAILER_API_KEY` environment variable.
+### 1. Install Mailchimp Marketing Library
+
+The `mailchimp-marketing` library is automatically installed as a dependency of `wagtail-newsletter`.
+
+### 2. Configure Environment Variables
+
+Set the following in your `.env` file:
+
+```env
+ACHERS_MAILCHIMP_API_KEY=your-mailchimp-api-key
+ACHERS_MAILCHIMP_SERVER_PREFIX=us1  # Your Mailchimp server prefix (e.g., us1, us2, etc.)
+```
+
+### 3. Get Your Mailchimp Credentials
+
+1. **API Key**: Go to Mailchimp Account → Settings → Extras → API keys
+2. **Server Prefix**: Found in your API key (e.g., `key-us1` → use `us1`)
+
+### 4. Configure Audience/Lists
+
+After setting up credentials:
+1. Run migrations: `make migrate`
+2. Access the Wagtail admin panel
+3. Navigate to Settings → Newsletter Audiences
+4. Create or sync your Mailchimp audience/list
+
+### 5. Send Newsletters from Blog Posts
+
+When creating or editing a blog post in the admin:
+1. Check the "Send e-mail" checkbox
+2. Publish the page
+3. The newsletter will be sent to your configured Mailchimp audience
+
+For detailed configuration options, see the [wagtail-newsletter documentation](https://github.com/allcaps/wagtail-newsletter).
 
 ## Usage & License
 

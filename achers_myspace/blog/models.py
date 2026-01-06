@@ -11,8 +11,12 @@ from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TagBase, ItemBase
 
+# Wagtail Newsletter integration
+from wagtail_newsletter.models import NewsletterPageMixin
 
-from blog.email import send_blog_post
+
+# COMMENTED OUT: MailerLite integration (replaced with wagtail-newsletter)
+# from blog.email import send_blog_post
 
 
 logger = logging.getLogger(__name__)
@@ -42,7 +46,7 @@ class BlogPageTag(ItemBase):
     )
 
 
-class BlogPage(Page):
+class BlogPage(NewsletterPageMixin, Page):
     """A Wagtail Page model representing an individual blog post."""
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
@@ -56,6 +60,9 @@ class BlogPage(Page):
     # BlogPage cannot have children
     subpage_types = []
 
+    # Template for newsletter emails
+    newsletter_template = "blog/email.html"
+
     content_panels = Page.content_panels + [
         FieldPanel("date"),
         FieldPanel("body"),
@@ -64,18 +71,22 @@ class BlogPage(Page):
         FieldPanel("top"),
     ]
 
-    def send_newsletter(self) -> bool:
-        """Sends an email notification about the blog post."""
-        try:
-            subject = f"{self.title}"
-            html_content = render_to_string("blog/email.html", {
-                "page": self,
-            })
-            send_blog_post(subject, html_content)
-            logger.info(f"Sent blog post email for '{self.title}'")
-            return True
-        except Exception as e:
-            logger.error(f"Error sending blog post email: {e}", exc_info=True)
-            import traceback
-            logger.error(traceback.format_exc())
-            return False
+    # Add newsletter panels from the mixin
+    edit_handler = None  # This will be handled by NewsletterPageMixin.get_edit_handler()
+
+    # COMMENTED OUT: MailerLite integration (replaced with wagtail-newsletter)
+    # def send_newsletter(self) -> bool:
+    #     """Sends an email notification about the blog post."""
+    #     try:
+    #         subject = f"{self.title}"
+    #         html_content = render_to_string("blog/email.html", {
+    #             "page": self,
+    #         })
+    #         send_blog_post(subject, html_content)
+    #         logger.info(f"Sent blog post email for '{self.title}'")
+    #         return True
+    #     except Exception as e:
+    #         logger.error(f"Error sending blog post email: {e}", exc_info=True)
+    #         import traceback
+    #         logger.error(traceback.format_exc())
+    #         return False

@@ -23,7 +23,8 @@ env = environ.Env()
 # .env is at repository root (one level above BASE_DIR)
 environ.Env.read_env(BASE_DIR.parent / '.env')
 
-MAILER_API_KEY = env("ACHERS_MAILER_API_KEY", default="")
+# COMMENTED OUT: MailerLite integration (replaced with wagtail-newsletter)
+# MAILER_API_KEY = env("ACHERS_MAILER_API_KEY", default="")
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -66,6 +67,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "django_filters",
+    "wagtail_newsletter",  # Mailchimp newsletter integration
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -206,3 +208,13 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+
+# Wagtail Newsletter (Mailchimp) Configuration
+# See https://github.com/allcaps/wagtail-newsletter for detailed documentation
+WAGTAIL_NEWSLETTER_CAMPAIGN_BACKEND = "wagtail_newsletter.campaign_backends.MailchimpCampaignBackend"
+WAGTAIL_NEWSLETTER_MAILCHIMP_API_KEY = env("ACHERS_MAILCHIMP_API_KEY", default="")
+WAGTAIL_NEWSLETTER_MAILCHIMP_SERVER_PREFIX = env("ACHERS_MAILCHIMP_SERVER_PREFIX", default="")
+WAGTAIL_NEWSLETTER_FROM_NAME = env("ACHERS_NEWSLETTER_FROM_NAME", default="Achers")
+WAGTAIL_NEWSLETTER_REPLY_TO = env("ACHERS_NEWSLETTER_REPLY_TO", default="achers@achers.org")
+# WAGTAIL_NEWSLETTER_AUDIENCE_MODEL can be customized if needed
+# WAGTAIL_NEWSLETTER_RECIPIENTS_MODEL can be customized if needed

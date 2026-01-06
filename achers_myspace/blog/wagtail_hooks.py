@@ -6,12 +6,13 @@ from django.urls import reverse
 from blog.models import BlogPage
 
 
-@hooks.register("after_publish_page")
-def send_newsletter_on_publish(request, page) -> bool:
-    """Send newsletter when a blog post is published."""
-    if isinstance(page, BlogPage) and page.send_email:
-        if page.send_newsletter():
-            BlogPage.objects.filter(pk=page.pk).update(send_email=False)
+# COMMENTED OUT: MailerLite integration (replaced with wagtail-newsletter)
+# @hooks.register("after_publish_page")
+# def send_newsletter_on_publish(request, page) -> bool:
+#     """Send newsletter when a blog post is published."""
+#     if isinstance(page, BlogPage) and page.send_email:
+#         if page.send_newsletter():
+#             BlogPage.objects.filter(pk=page.pk).update(send_email=False)
 
 
 @hooks.register('register_admin_menu_item')
