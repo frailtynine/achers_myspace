@@ -171,3 +171,123 @@
 #         self.assertNotIn('<iframe', content)
 #         self.assertIn('youtube.com/watch?v=test', content)
 # ===================================================================
+
+
+# ===================================================================
+# NEW: Mailchimp integration tests (via wagtail-newsletter)
+# ===================================================================
+from django.test import TestCase
+from django.utils import timezone
+
+from wagtail.models import Page
+from home.models import HomePage
+
+from blog.models import BlogPage
+
+
+class BlogPageNewsletterIntegrationTest(TestCase):
+    """Tests for BlogPage integration with wagtail-newsletter."""
+
+    def setUp(self):
+        """Set up test data."""
+        # Get the root page
+        root = Page.objects.get(id=1)
+        
+        # Create a HomePage as parent with a unique slug
+        self.home_page = HomePage(
+            title="Test Home",
+            slug="test-home",
+            body="Test home page",
+        )
+        root.add_child(instance=self.home_page)
+        self.home_page.save_revision().publish()
+
+    def test_blog_page_has_newsletter_fields(self):
+        """Test that BlogPage has newsletter-related fields from NewsletterPageMixin."""
+        blog_page = BlogPage(
+            title="Test Blog Post",
+            slug="test-blog-post",
+            date=timezone.now().date(),
+            body="Test content",
+        )
+        
+        # Check that newsletter fields are available
+        self.assertTrue(hasattr(blog_page, 'newsletter_recipients'))
+        self.assertTrue(hasattr(blog_page, 'newsletter_subject'))
+        self.assertTrue(hasattr(blog_page, 'newsletter_campaign'))
+
+    def test_blog_page_newsletter_template_configured(self):
+        """Test that BlogPage has the correct newsletter template."""
+        blog_page = BlogPage(
+            title="Test Blog Post",
+            slug="test-blog-post",
+            date=timezone.now().date(),
+            body="Test content",
+        )
+        
+        self.assertEqual(blog_page.newsletter_template, "blog/email.html")
+
+    def test_get_newsletter_subject_defaults_to_title(self):
+        """Test that newsletter subject defaults to page title."""
+        blog_page = BlogPage(
+            title="My Blog Post Title",
+            slug="my-blog-post",
+            date=timezone.now().date(),
+            body="Test content",
+        )
+        
+        # When newsletter_subject is not set, it should return the title
+        self.assertEqual(blog_page.get_newsletter_subject(), "My Blog Post Title")
+
+    def test_get_newsletter_subject_custom(self):
+        """Test that custom newsletter subject is used when provided."""
+        blog_page = BlogPage(
+            title="My Blog Post Title",
+            slug="my-blog-post",
+            date=timezone.now().date(),
+            body="Test content",
+            newsletter_subject="Custom Newsletter Subject",
+        )
+        
+        self.assertEqual(blog_page.get_newsletter_subject(), "Custom Newsletter Subject")
+
+    def test_get_newsletter_context(self):
+        """Test that newsletter context includes the page."""
+        blog_page = BlogPage(
+            title="Test Blog Post",
+            slug="test-blog-post",
+            date=timezone.now().date(),
+            body="Test content",
+        )
+        
+        context = blog_page.get_newsletter_context()
+        self.assertIn('page', context)
+        self.assertEqual(context['page'], blog_page)
+
+    def test_get_newsletter_html(self):
+        """Test that newsletter HTML is generated from template."""
+        self.home_page.add_child(instance=BlogPage(
+            title="Test Blog Post",
+            slug="test-blog-post",
+            date=timezone.now().date(),
+            body="<p>Test content</p>",
+        ))
+        blog_page = BlogPage.objects.get(slug="test-blog-post")
+        
+        html = blog_page.get_newsletter_html()
+        
+        # Check that the HTML contains expected elements from the template
+        self.assertIn("Test Blog Post", html)
+        self.assertIn("Test content", html)
+        
+    def test_send_email_field_exists(self):
+        """Test that send_email field still exists for backward compatibility."""
+        blog_page = BlogPage(
+            title="Test Blog Post",
+            slug="test-blog-post",
+            date=timezone.now().date(),
+            body="Test content",
+            send_email=True,
+        )
+        
+        self.assertTrue(blog_page.send_email)
