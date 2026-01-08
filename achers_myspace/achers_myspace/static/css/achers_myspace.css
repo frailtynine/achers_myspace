@@ -2,6 +2,129 @@
     box-sizing: border-box;
 }
 
+/* New addition by Ilya */
+
+body {
+ font-size: 1em;
+ line-height: 1.6;
+ color: #fff;
+}
+
+.bio-section, #mc_embed_shell, .player-embed, .post-item{
+ border: none;
+}
+
+h2, #mc_embed_signup h2, .post-item h3 {
+ background: none !important;
+}
+
+
+
+.post-item h3 a, .bio-section h2, #mc_embed_signup #mc_embed_signup_scroll h2{
+ color: #fff !important;
+ border-bottom: none !important;
+ font-size: 2.2em;
+}
+
+.bio-section h2{
+ font-size: 2.6em;
+ line-height: 1.2 !important;
+ margin: 0 28px;
+ padding: 24px 0 16px;
+}
+
+
+/* Headers */
+.post-item h3, .bio-section h2 a, #mc_embed_signup h2{
+ text-transform: none !important;
+ letter-spacing: 0 !important;
+ line-height: 1.2 !important;
+ 
+ 
+}
+
+.bio-section h2 {
+ padding-bottom: 0;
+}
+
+#mc_embed_shell{
+     margin-top: 16px;
+}
+
+.indicates-required{
+ display: none;
+}
+
+.bio-section > div{
+ padding: 0 28px;
+ 
+}
+
+.bio-section > div:last-child{
+ padding-bottom: 24px;
+ 
+}
+
+#mc_embed_signup label{
+ font-weight: normal !important;
+ margin-bottom: 10px;
+}
+
+.post-item h3{
+ padding: 24px 0 0 0;
+ margin: 0 28px;
+ border-bottom: none;
+}
+
+.post-item > div {
+    padding: 0 28px 28px 28px;
+}
+
+
+
+.post-meta {
+     background: transparent;
+    color: #999;
+    margin: 0;
+    padding: 8px 28px;
+}
+
+iframe{
+ min-height: 0;
+}
+
+.mc-field-group{
+ padding: 0 28px 15px;
+}
+
+#mc_embed_signup .mc-field-group{
+ padding: 15px 28px;
+}
+
+#mc_embed_signup h2{
+ padding: 20px 28px 0 28px !important;
+ font-size: 1rem !important;
+}
+
+#mc_embed_signup .clear{
+ padding: 0 28px 24px;
+}
+
+#mc_embed_signup input.email{
+     background: #404040 !important;
+    border: 1px solid #555 !important;
+    border-radius: 4px !important;
+}
+
+#mc_embed_signup .button{
+ text-transform: none !important;
+ letter-spacing: 0 !important;
+ font-size: 1rem !important;
+ border-radius: 4px !important;
+}
+
+/* End of the New addition by Ilya */
+
 body {
     overflow-x: hidden;
     background: #1a1a1a;
