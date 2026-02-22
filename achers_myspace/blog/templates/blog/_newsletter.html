@@ -4,20 +4,37 @@
 
 <style type="text/css">
     /* Style content elements to match main site */
-    p { color: #e0e0e0; margin: 0 0 15px 0; }
-    h1, h2, h3, h4, h5, h6 { color: #ff6b6b; margin: 20px 0 10px 0; }
-    a { color: #ff6b6b; text-decoration: none; }
-    a:visited { color: #c44569; }
-    a:hover { text-decoration: underline; }
+    body { background-color: #cc6633; }
+    p { color: #000000; margin: 0 0 15px 0; line-height: 1.5; font-family: 'Courier New', monospace; }
+    h1, h2, h3, h4, h5, h6 { 
+        color: #000000; 
+        margin: 20px 0 10px 0; 
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: Arial Black, Arial, sans-serif;
+    }
+    h1 { font-size: 32px; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 24px; }
+    a { color: #000000; text-decoration: underline; }
+    a:hover { text-decoration: none; }
     img { max-width: 100%; height: auto; }
     iframe { max-width: 100%; border: none; }
 </style>
 
 {% mrml %}
     <mjml>
-        <mj-body>
-            <h1>{{ page.title }}</h1>
-            {{ page.body|newsletter_richtext }}
+        <mj-body background-color="#cc6633">
+            <mj-section background-color="#cc6633">
+                <mj-column>
+                    <mj-text font-family="Arial Black, Arial, sans-serif" font-size="36px" font-weight="bold" color="#000000" text-transform="uppercase">
+                        {{ page.title }}
+                    </mj-text>
+                    <mj-text font-family="Courier New, monospace" font-size="16px" color="#000000" line-height="1.5">
+                        {{ page.body|newsletter_richtext }}
+                    </mj-text>
+                </mj-column>
+            </mj-section>
         </mj-body>
     </mjml>
 {% endmrml %}
