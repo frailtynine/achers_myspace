@@ -46,10 +46,10 @@ COPY --chown=wagtail:wagtail achers_myspace/ .
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
 
-# Create media directory with proper ownership
-RUN mkdir -p /app/media
+# Create media and static directories with proper ownership
+RUN mkdir -p /app/media /app/static
 
-# Collect static files.
+# Collect static files at build time - they'll be baked into the image
 RUN python manage.py collectstatic --noinput --clear
 
 # Runtime command that executes when "docker run" is called.
