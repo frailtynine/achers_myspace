@@ -9,26 +9,20 @@ services:
       - POSTGRES_DB=${ACHERS_POSTGRES_DB}
       - POSTGRES_USER=${ACHERS_POSTGRES_USER}
       - POSTGRES_PASSWORD=${ACHERS_POSTGRES_PASSWORD}
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${ACHERS_POSTGRES_USER} -d ${ACHERS_POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
 
   migrate:
     image: ${DOCKER_IMAGE}
-    command: python manage.py migrate --noinput
+    command: sh -c "sleep 10 && python manage.py migrate --noinput"
     env_file:
       - .env
     environment:
       - DJANGO_SETTINGS_MODULE=achers_myspace.settings.production
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
   web:
     image: ${DOCKER_IMAGE}
-    command: gunicorn achers_myspace.wsgi:application --bind 0.0.0.0:8100
+    command: sh -c "python manage.py collectstatic --noinput --clear && gunicorn achers_myspace.wsgi:application --bind 0.0.0.0:8100"
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
