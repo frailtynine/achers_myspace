@@ -1,410 +1,252 @@
+/* ACHERS Website CSS - Based on Design Mocks */
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* New addition by Ilya */
+/* Font Declarations */
+@font-face {
+    font-family: 'DK Compagnon';
+    src: url('../fonts/dk-compagnon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'American Typewriter';
+    src: url('../fonts/American Typewriter Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Global Styles */
 body {
- font-size: 1em;
- line-height: 1.6;
- color: #fff;
+    background: #cc6633; 
+    color: #000000;
+    font-family: 'American Typewriter', 'Courier New', monospace; /* Body text font */
+    font-size: 20pt; 
+    line-height: 1.5;
+    overflow-x: hidden;
 }
 
-.bio-section, #mc_embed_shell, .player-embed, .post-item{
- border: none;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif; /* Headers font */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000000;
 }
 
-h2, #mc_embed_signup h2, .post-item h3 {
- background: none !important;
+/* Links */
+a {
+    color: #000000;
+    text-decoration: none;
 }
 
-
-
-.post-item h3 a, .bio-section h2, #mc_embed_signup #mc_embed_signup_scroll h2{
- color: #fff !important;
- border-bottom: none !important;
- font-size: 2.2em;
+a:hover {
+    text-decoration: underline;
 }
 
-.bio-section h2{
- font-size: 2.6em;
- line-height: 1.2 !important;
- margin: 0 28px;
- padding: 24px 0 16px;
+/* Layout Container */
+.myspace-container {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
+/* Left Column - Navigation & Bio */
+.left-column {
+    width: 35%;
+    flex-shrink: 0;
+}
 
-/* Headers */
-.post-item h3, .bio-section h2 a, #mc_embed_signup h2{
- text-transform: none !important;
- letter-spacing: 0 !important;
- line-height: 1.2 !important;
- 
- 
+/* Bio Section - "ACHERS" Title */
+.bio-section {
+    border: none;
+    margin-bottom: 10px;
+}
+
+.bio-links {
+    margin-bottom: 20px;
 }
 
 .bio-section h2 {
- padding-bottom: 0;
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 48pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000000;
+    line-height: 1;
 }
 
-#mc_embed_shell{
-     margin-top: 16px;
+.bio-section h2 a {
+    color: #000000;
+    text-decoration: none;
 }
 
-.indicates-required{
- display: none;
+/* Navigation Links - LISTEN TOUR MERCH SIGN UP */
+.bio-section > div:first-of-type {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 48pt; /* Approximate - adjust as needed */
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.3;
 }
 
-.bio-section > div{
- padding: 0 28px;
- 
+.bio-section > div:first-of-type a {
+    color: #000000;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.bio-section > div:last-child{
- padding-bottom: 24px;
- 
-}
-
-#mc_embed_signup label{
- font-weight: normal !important;
- margin-bottom: 10px;
-}
-
-.post-item h3{
- padding: 24px 0 0 0;
- margin: 0 28px;
- border-bottom: none;
-}
-
-.post-item > div {
-    padding: 0 28px 28px 28px;
-}
-
-
-
-.post-meta {
-     background: transparent;
-    color: #999;
-    margin: 0;
-    padding: 8px 28px;
-}
-
-iframe{
- min-height: 0;
-}
-
-.mc-field-group{
- padding: 0 28px 15px;
-}
-
-#mc_embed_signup .mc-field-group{
- padding: 15px 28px;
-}
-
-#mc_embed_signup h2{
- padding: 20px 28px 0 28px !important;
- font-size: 1rem !important;
-}
-
-#mc_embed_signup .clear{
- padding: 0 28px 24px;
-}
-
-#mc_embed_signup input.email{
-     background: #404040 !important;
-    border: 1px solid #555 !important;
-    border-radius: 4px !important;
-}
-
-#mc_embed_signup .button{
- text-transform: none !important;
- letter-spacing: 0 !important;
- font-size: 1rem !important;
- border-radius: 4px !important;
-}
-
-/* End of the New addition by Ilya */
-
-body {
-    overflow-x: hidden;
-    background: #1a1a1a;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color: #e0e0e0;
-}
-
-a {
-    color: #ff6b6b;
-}
-
-a:visited {
-    color: #c44569;
-}
-
-/* Home Page Styles */
-.myspace-container {
+.bio-links-row {
     display: flex;
+    flex-direction: row;
     gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+}
+
+.bio-video {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* Newsletter Section */
+#mc_embed_shell {
+    border: none;
+    margin-top: 20px;
+}
+
+#mc_embed_signup {
+    clear: both;
     width: 100%;
 }
 
-.left-column {
-    width: 40%;
-    padding: 0;
-    flex-shrink: 0;
-    position: sticky;
-    top: 20px;
-    align-self: flex-start;
+#mc_embed_signup h2 {
+    font-size: 20pt; 
+
 }
 
-.bio-section {
-    border: 2px solid #333;
-    align-self: flex-start;
-    background: #2a2a2a;
+.indicates-required {
+    display: none;
 }
 
+#mc_embed_signup .mc-field-group {
+    margin-bottom: 15px;
+}
+
+#mc_embed_signup label {
+    display: none; /* Hide label, use placeholder instead */
+}
+
+#mc_embed_signup input.email {
+    font-family: 'American Typewriter', 'Courier New', monospace;
+    font-size: 16px; /* Approximate - adjust as needed */
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #000000;
+    background: #cc6633; /* Same as body background */
+    color: #000000;
+    text-transform: uppercase;
+}
+
+#mc_embed_signup input.email::placeholder {
+    color: #000000;
+    opacity: 1;
+}
+
+#mc_embed_signup .button {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 28px; /* Approximate - adjust as needed */
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 15px;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#mc_embed_signup .button:hover {
+    background: #333333;
+}
+
+/* Hide Mailchimp branding */
+#mc_embed_signup .optionalParent p,
+#mc_embed_signup .refferal_badge {
+    display: none !important;
+}
+
+/* Player Embed */
 .player-embed {
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
+.player-embed iframe {
+    width: 100%;
+    border: none;
+}
+
+/* Right Column - Posts/Events */
 .posts-wall {
     flex: 1;
     min-width: 0;
 }
 
-.bio-section h2 {
-    margin: 0;
-    padding: 12px 15px;
-    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
-    color: #ff6b6b;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #ff6b6b;
-}
-
-.bio-section h2 a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.bio-section h2 a:visited {
-    color: inherit;
-}
-
-.bio-section h2 a:hover {
-    text-decoration: underline;
-}
-
-.bio-section > div {
-    padding: 15px;
-}
-
-/* Subscribe Button */
-.ml-onclick-form {
-    background: linear-gradient(to bottom, #ff6b6b, #c44569);
-    color: #fff;
-    padding: 10px 20px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 15px;
-    transition: all 0.2s ease;
-}
-
-.ml-onclick-form:hover {
-    background: linear-gradient(to bottom, #ff8585, #d65a7c);
-    border-color: #ff8585;
-    transform: translateY(-1px);
-}
-
-.ml-onclick-form:active {
-    transform: translateY(0);
-}
-
-/* Mailchimp Embedded Signup Form */
-#mc_embed_shell {
-    border: 2px solid #333;
-    background: #2a2a2a;
-    margin-bottom: 15px;
-    overflow: hidden;
-}
-
-#mc_embed_signup {
-    background: #2a2a2a !important;
-    clear: left;
-    font: 12px Verdana, Arial, Helvetica, sans-serif !important;
-    width: 100% !important;
-}
-
-#mc_embed_signup h2 {
-    margin: 0 !important;
-    padding: 12px 15px !important;
-    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a) !important;
-    color: #ff6b6b !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    border-bottom: 2px solid #ff6b6b !important;
-}
-
-#mc_embed_signup_scroll {
-    padding: 0 !important;
-}
-
-#mc_embed_signup .indicates-required {
-    text-align: right;
-    font-size: 11px;
-    margin: 10px 15px 0 15px;
-    color: #888;
-}
-
-#mc_embed_signup .asterisk {
-    color: #ff6b6b;
-}
-
-#mc_embed_signup .mc-field-group {
-    padding: 15px;
-    padding-top: 10px;
-    width: 100% !important;
-}
-
-#mc_embed_signup label {
-    display: block;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #e0e0e0;
-}
-
-#mc_embed_signup input.email {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    width: 100% !important;
-    padding: 8px 10px;
-    background: #1a1a1a;
-    border: 2px solid #333;
-    color: #e0e0e0;
-    box-sizing: border-box;
-}
-
-#mc_embed_signup input.email:focus {
-    outline: none;
-    border-color: #ff6b6b;
-}
-
-#mc_embed_signup .clear {
-    display: block;
-    height: auto;
-    padding: 0 15px 15px 15px;
-    width: 100%;
-}
-
-#mc_embed_signup .button {
-    background: linear-gradient(to bottom, #ff6b6b, #c44569) !important;
-    color: #fff !important;
-    padding: 10px 20px !important;
-    font-family: Verdana, Arial, Helvetica, sans-serif !important;
-    font-size: 12px !important;
-    font-weight: bold !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    cursor: pointer !important;
-    border: none !important;
-    width: 100% !important;
-    transition: all 0.2s ease;
-    border-radius: 0 !important;
-}
-
-#mc_embed_signup .button:hover {
-    background: linear-gradient(to bottom, #ff8585, #d65a7c) !important;
-    transform: translateY(-1px);
-}
-
-#mc_embed_signup .button:active {
-    transform: translateY(0);
-}
-
-#mc_embed_signup #mce-responses {
-    padding: 0 15px;
-}
-
-#mc_embed_signup .response {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 11px;
-    border: 2px solid #333;
-    background: #222;
-}
-
-#mc_embed_signup #mce-error-response {
-    color: #ff6b6b;
-    border-color: #ff6b6b;
-}
-
-#mc_embed_signup #mce-success-response {
-    color: #4CAF50;
-    border-color: #4CAF50;
-}
-
-/* Hide Mailchimp referral badge */
-#mc_embed_signup .optionalParent p {
-    display: none !important;
-}
-
-#mc_embed_signup .refferal_badge {
-    display: none !important;
-}
-
+/* Post Item - Event Box */
 .post-item {
-    border: 2px solid #333;
-    padding: 0;
-    margin-bottom: 15px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    background: #2a2a2a;
-    overflow: hidden;
+    border: none;
+    margin-bottom: 40px;
 }
 
-.post-item h3 {
-    margin: 0;
-    padding: 12px 15px;
-    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
-    color: #ff6b6b;
-    font-size: 14px;
+/* Date Box - "FRIDAY 6TH JAN 2026" */
+.post-meta {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 28px; /* Approximate - adjust as needed */
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #ff6b6b;
-    word-wrap: break-word;
+    color: #000000;
+    background: transparent;
+    border: 2px solid #000000;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* Event Title - "ACHERS EP LAUNCH" */
+.post-item h3 {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 40px; /* Approximate - adjust as needed */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    background: transparent;
+    border: none;
+    padding-left: 20px;
 }
 
 .post-item h3 a {
-    color: #ff6b6b;
-    text-decoration: none;
+    color: #000000;
 }
 
-.post-item h3 a:visited {
-    color: #ff6b6b;
-}
-
-.post-item h3 a:hover {
-    text-decoration: underline;
-}
-
+/* Event Description */
 .post-item > div {
-    padding: 15px;
+    font-family: 'American Typewriter', 'Courier New', monospace;
+    font-size: 16px; /* Approximate - adjust as needed */
+    line-height: 1.5;
+    color: #000000;
+    padding: 0;
 }
 
+/* Images */
 .post-item img,
 .post-body img,
 .bio-section img {
@@ -412,146 +254,22 @@ a:visited {
     height: auto;
 }
 
-.post-meta {
-    font-size: 11px;
-    color: #888;
-    margin-bottom: 10px;
-    padding: 8px 15px;
-    font-style: italic;
-    background: #222;
-}
-
-.blog-post-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.blog-post-content {
-    border: 2px solid #333;
-    padding: 0;
-    background: #2a2a2a;
-}
-
-.blog-post-content h1 {
-    margin: 0;
-    padding: 15px;
-    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
-    color: #ff6b6b;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #ff6b6b;
-}
-
-.meta {
-    font-size: 11px;
-    color: #888;
-    padding: 10px 15px;
-    background: #222;
-    margin: 0;
-    font-style: italic;
-}
-
-.intro {
-    border: 2px solid #333;
-    padding: 15px;
-    margin: 15px;
-    background: #1f1f1f;
-    font-style: italic;
-    color: #ccc;
-}
-
-.post-body {
-    margin: 0;
-    padding: 15px;
-}
-
-.back-link {
-    border-top: 2px solid #333;
-    padding: 15px;
-    margin: 0;
-    background: #222;
-}
-
-.back-link a {
-    text-decoration: none;
-    color: #ff6b6b;
-}
-
-.back-link a:visited {
-    color: #c44569;
-}
-
-.back-link a:hover {
-    text-decoration: underline;
-}
-.blog-post-content h1 {
-    margin-top: 0;
-    border-bottom: 2px solid #000;
-    padding-bottom: 15px;
-}
-
-.meta {
-    font-size: 0.9em;
-    color: #666;
-    padding: 10px 0;
-    border-bottom: 1px solid #000;
-    margin-bottom: 20px;
-}
-
-.intro {
-    border: 2px solid #000;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.post-body {
-    margin-bottom: 20px;
-}
-
-.back-link {
-    border-top: 2px solid #000;
-    padding-top: 15px;
-    margin-top: 30px;
-}
-
-.back-link a {
-    text-decoration: none;
-    color: #0000EE;
-}
-
-.back-link a:visited {
-    color: #551A8B;
-}
-
-.back-link a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive iframe wrapper - catch all iframes in content */
-.post-item iframe,
-.post-body iframe {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-    border: none !important;
-}
-
-/* Spotify embeds need more height */
-.post-item iframe[src*="spotify"],
-.post-body iframe[src*="spotify"] {
-    height: 380px !important;
-    aspect-ratio: auto;
-}
-
-/* Generic fallback */
+/* iFrame handling */
 iframe {
     width: 100%;
-    min-height: 315px; /* YouTube default embed height */
     border: none;
+}
+
+.post-item iframe,
+.post-body iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.post-item iframe[src*="spotify"],
+.post-body iframe[src*="spotify"] {
+    height: 380px;
+    aspect-ratio: auto;
 }
 
 /* Pagination */
@@ -559,76 +277,122 @@ iframe {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    margin-top: 15px;
-    border: 2px solid #333;
-    background: #2a2a2a;
+    gap: 20px;
+    margin-top: 40px;
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
 .pagination a {
-    color: #ff6b6b;
-    text-decoration: none;
-    padding: 8px 12px;
-    border: 2px solid #333;
-    background: #222;
-}
-
-.pagination a:hover {
-    background: #333;
-    text-decoration: underline;
+    color: #000000;
+    padding: 10px 15px;
+    border: 2px solid #000000;
 }
 
 .pagination .page-info {
-    color: #888;
+    color: #000000;
+}
+
+/* Blog Post Page */
+.blog-post-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+}
+
+.blog-post-content {
+    border: none;
+}
+
+.blog-post-content h1 {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 48px; /* Approximate - adjust as needed */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 20px;
+    border: none;
+    padding: 0;
+}
+
+.meta {
+    font-family: 'American Typewriter', 'Courier New', monospace;
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 20px;
+    border: none;
+    padding: 0;
+}
+
+.intro {
+    font-family: 'American Typewriter', 'Courier New', monospace;
+    font-size: 18px;
+    font-style: italic;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.post-body {
+    font-family: 'American Typewriter', 'Courier New', monospace;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    padding: 0;
+}
+
+.back-link {
+    font-family: 'DK Compagnon', 'Arial Black', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #000000;
+    background: transparent;
+}
+
+.back-link a {
+    color: #000000;
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .myspace-container {
         flex-direction: column;
-        padding: 10px;
-        gap: 15px;
+        padding: 20px;
+        gap: 20px;
     }
     
     .left-column {
         width: 100%;
-        position: static;
-
     }
     
-    .bio-section {
-        width: 100%;
+    .bio-section h2 {
+        font-size: 40px; /* Smaller on mobile */
     }
     
-    .posts-wall {
-        width: 100%;
-        height: 60vh;
-        margin-left: 0;
-    }
-    
-    .post-item {
-        padding: 0;
+    .bio-section > div:first-of-type {
+        font-size: 28px; /* Smaller on mobile */
     }
     
     .post-item h3 {
-        padding: 10px 12px;
-    }
-    
-    .post-item > div {
-        padding: 12px;
+        font-size: 28px; /* Smaller on mobile */
     }
     
     .post-meta {
-        padding: 6px 12px;
+        font-size: 20px; /* Smaller on mobile */
     }
     
-    .post-item img,
-    .post-body img,
-    .bio-section img,
-    .posts-wall img {
-        max-width: 100% !important;
-        height: auto !important;
-        width: 100% !important;
+    .blog-post-container {
+        padding: 20px;
+    }
+    
+    .blog-post-content h1 {
+        font-size: 32px; /* Smaller on mobile */
     }
 }
+
+/* TODO: Fine-tune font sizes after testing with actual content */
+/* TODO: Verify color contrast for accessibility */
