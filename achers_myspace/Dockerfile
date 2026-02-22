@@ -1,5 +1,5 @@
 # Use an official Python runtime based on Debian 12 "bookworm" as a parent image.
-FROM python:3.12-slim-bookworm
+FROM python:3.13-slim-bookworm
 
 # Add user that will be used in the container.
 RUN useradd wagtail
@@ -28,9 +28,10 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 # Install uv.
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Install the project requirements.
+# Install the project requirements using the lockfile for reproducible builds.
 COPY pyproject.toml uv.lock /
-RUN uv pip install --system --no-cache -r pyproject.toml
+RUN uv export --frozen --no-dev --no-hashes --directory / -o /requirements.txt && \
+    uv pip install --system --no-cache -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
@@ -49,8 +50,9 @@ USER wagtail
 # Create media and static directories with proper ownership
 RUN mkdir -p /app/media /app/static
 
-# Collect static files at build time - they'll be baked into the image
-RUN python manage.py collectstatic --noinput --clear
+# Collect static files at build time using production settings so that
+# ManifestStaticFilesStorage generates the correct manifest and hashed filenames.
+RUN DJANGO_SETTINGS_MODULE=achers_myspace.settings.production python manage.py collectstatic --noinput --clear
 
 # Runtime command that executes when "docker run" is called.
 # Gunicorn will start the application server.
