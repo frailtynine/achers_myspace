@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-<!-- load wagtailcore_tags by adding this: -->
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags static %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -23,9 +22,10 @@
         </div>
 
     <div id="mc_embed_shell">
+        <h2 class="signup-heading">Be the first to hear about new music, tour dates and more...</h2>
         <div id="mc_embed_signup">
             <form action="https://achers.us22.list-manage.com/subscribe/post?u=3b292f4435166aeefc4b9b1aa&amp;id=017b79dccc&amp;f_id=0057c2e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate="">
-                <div id="mc_embed_signup_scroll"><h2>Be the first to hear about new music, tour dates and more...</h2>
+                <div id="mc_embed_signup_scroll">
                 <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
                 <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" placeholder="E-mail Address"></div>
                 <div id="mce-responses" class="clear foot">
@@ -43,15 +43,29 @@
             </div>
         </div>
     </div>
+</form>
+</div>
+</div>
+
     <div class="bio-video">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/IDH14khQ9rU?si=CUFkiBglfkYg5GIL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="bio-video">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/YT0IWNAp3Uw?si=4A3tbyvy67OipIDU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-</form>
-</div>
-</div>
+
+    <div class="social-icons">
+        <a href="https://www.instagram.com/achersband/" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'insta.png' %}" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@achersband" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'tiktok.png' %}" alt="TikTok">
+        </a>
+        <a href="https://www.youtube.com/@achersband" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'yt.png' %}" alt="YouTube">
+        </a>
+    </div>
+
     <div class="player-embed">
         <iframe 
             src="https://bandcamp.com/EmbeddedPlayer/album=2152755717/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless>

@@ -23,7 +23,7 @@
 
 /* Global Styles */
 body {
-    background: #cc6633; 
+    background: #E3643B; 
     color: #000000;
     font-family: 'American Typewriter', 'Courier New', monospace; /* Body text font */
     font-size: 20pt; 
@@ -121,13 +121,20 @@ a:hover {
     margin-top: 20px;
 }
 
-#mc_embed_signup {
-    clear: both;
-    width: 100%;
+.signup-heading {
+    font-family: 'American Typewriter', 'Courier New', monospace;
+    font-size: 13pt;
+    font-weight: normal;
+    text-transform: none;
+    color: #000000;
+    margin-bottom: 20px;
+    line-height: 1.4;
 }
 
-#mc_embed_signup h2 {
-    font-size: 16pt; 
+#mc_embed_signup {
+    clear: both;
+    width: 80%; /* Reduce width by 20% */
+    margin: 0 auto; /* Center the form */
 }
 
 .indicates-required {
@@ -135,7 +142,7 @@ a:hover {
 }
 
 #mc_embed_signup .mc-field-group {
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Reduced from 15px by 20% */
 }
 
 #mc_embed_signup label {
@@ -144,11 +151,11 @@ a:hover {
 
 #mc_embed_signup input.email {
     font-family: 'American Typewriter', 'Courier New', monospace;
-    font-size: 18pt;
+    font-size: 14pt; /* Reduced from 18pt by ~20% */
     width: 100%;
-    padding: 15px;
+    padding: 12px; /* Reduced from 15px by 20% */
     border: 2px solid #000000;
-    background: #cc6633; /* Same as body background */
+    background: #E3643B; /* Same as body background */
     color: #000000;
     text-transform: uppercase;
 }
@@ -160,11 +167,11 @@ a:hover {
 
 #mc_embed_signup .button {
     font-family: 'DK Compagnon', 'Arial Black', sans-serif;
-    font-size: 24pt; /* Approximate - adjust as needed */
+    font-size: 19pt; /* Reduced from 24pt by ~20% */
     font-weight: bold;
     text-transform: uppercase;
     width: 100%;
-    padding: 15px;
+    padding: 12px; /* Reduced from 15px by 20% */
     background: #000000;
     color: #ffffff;
     border: 2px solid #000000;
@@ -174,6 +181,56 @@ a:hover {
 
 #mc_embed_signup .button:hover {
     background: #333333;
+}
+
+/* Hide Mailchimp branding */
+#mc_embed_signup .optionalParent p,
+#mc_embed_signup .refferal_badge {
+    display: none !important;
+}
+
+/* Video embeds - full width */
+.bio-video {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.bio-video iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+    opacity: 0.7;
+}
+
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
+/* Player Embed */
+.player-embed {
+    margin-top: 30px;
 }
 
 /* Hide Mailchimp branding */
@@ -239,7 +296,7 @@ a:hover {
 /* Event Description */
 .post-item > div {
     font-family: 'American Typewriter', 'Courier New', monospace;
-    font-size: 20pt; /* Approximate - adjust as needed */
+    font-size: 16px;
     line-height: 1.5;
     color: #000000;
     padding-left: 20px;
@@ -251,7 +308,6 @@ a:hover {
 .bio-section img {
     max-width: 100%;
     height: auto;
-    margin: 5px;
 }
 
 /* iFrame handling */
@@ -260,6 +316,7 @@ iframe {
     border: none;
 }
 
+.bio-video iframe,
 .post-item iframe,
 .post-body iframe {
     width: 100% !important;
